@@ -159,7 +159,7 @@ a { color: inherit; }
   position: relative;
 }
 .hero-media { inset: 0; position: absolute; }
-.hero-media img { object-fit: cover; object-position: center center; }
+.hero-media img { display: block; height: 100%; object-fit: cover; object-position: center center; width: 100%; }
 .hero-shade {
   background:
     linear-gradient(90deg, transparent 0%, transparent 43%, rgba(18,27,22,.28) 57%, rgba(18,27,22,.9) 86%, rgba(18,27,22,.98) 100%),

@@ -143,7 +143,7 @@ export default function Home() {
       <main id="main">
         <section className="hero" id="top">
           <div className="hero-media" aria-hidden="true">
-            <Image src="/images/tom-forest-banner.webp" alt="" fill priority sizes="100vw" />
+            <img src="/images/tom-forest-banner.png" alt="" fetchPriority="high" />
           </div>
           <div className="hero-shade" aria-hidden="true" />
           <canvas ref={particleCanvasRef} className="particle-field" aria-hidden="true" />
@@ -172,7 +172,7 @@ export default function Home() {
           </div>
           <div className="why-copy" data-reveal>
             <div className="phab-logo-card">
-              <Image src="/images/phab-logo.png" alt="Phab" width={868} height={868} />
+              <img src="/images/phab-logo.png" alt="Phab" width="868" height="868" />
             </div>
             <p className="lead">Phab&apos;s values closely reflect both my personal beliefs and my professional life.</p>
             <p>I work at Eaglewood School, an alternative provision supporting young people with a wide range of additional needs, including social, emotional and mental health needs, autism, ADHD and learning difficulties.</p>
