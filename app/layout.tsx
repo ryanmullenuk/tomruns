@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     description: "26.2 miles. A £2,500 target. One brilliant cause.",
     type: "website",
     url: "https://tomruns.co.uk",
-    images: [{ url: "/og.jpg", width: 800, height: 449, alt: "Tom running through the New Forest for Phab" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Tom Runs — London Marathon 2027 for Phab" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tom Runs for Phab",
     description: "26.2 miles. A £2,500 target. One brilliant cause.",
-    images: ["/og.jpg"],
+    images: ["/og.png"],
   },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
