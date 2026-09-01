@@ -302,6 +302,11 @@ export default function Home() {
           <div className="section-shapes goal-shapes" aria-hidden="true"><i /><i /><i /></div>
           <div className="goal-copy" data-reveal>
             <p className="eyebrow">The fundraising target</p>
+            <div className="fundraising-update-tile" aria-live="polite">
+              <span>Campaign update</span>
+              <strong>{formatCurrency(fundraising.total)}</strong>
+              <p>raised so far</p>
+            </div>
             <h2 id="goal-title">£2,500.<br /><span>Let&apos;s get there.</span></h2>
             <p>One marathon, one fundraising target and a lot of training miles between now and the start line.</p>
           </div>
@@ -349,6 +354,34 @@ export default function Home() {
             <article data-reveal><time>NOW</time><div><p className="eyebrow">The starting line</p><h3>Building the base</h3><p>The site is ready. Training stories, events and honest updates are next.</p></div></article>
             <article data-reveal><time>SOON</time><div><p className="eyebrow">Training updates</p><h3>Long runs &amp; lessons</h3><p>Come back for the good runs, the tough ones and everything learned in between.</p></div></article>
             <article data-reveal><time>RACE DAY</time><div><p className="eyebrow">London Marathon 2027</p><h3>26.2 for Phab</h3><p>The finish line is the destination. A more inclusive future is the point.</p></div></article>
+          </div>
+        </section>
+
+        <section className="social-kit section-pad" aria-labelledby="social-kit-title">
+          <div className="social-kit-heading" data-reveal>
+            <p className="eyebrow">Campaign toolkit</p>
+            <h2 id="social-kit-title">Share the run.<br /><span>Spread the word.</span></h2>
+            <p>Download the ready-made Instagram graphics and help more people find the campaign, follow the training and support Phab.</p>
+          </div>
+          <div className="social-assets">
+            <article className="social-card" data-reveal>
+              <div className="social-preview social-preview-square">
+                <Image src="/social/tom-runs-instagram-square-phab.png" alt="Square Tom Runs Instagram campaign post" width={1080} height={1080} unoptimized />
+              </div>
+              <div className="social-card-copy">
+                <div><p className="eyebrow">Instagram post</p><h3>Square graphic</h3><span>1080 × 1080 PNG</span></div>
+                <a className="button" href="/social/tom-runs-instagram-square-phab.png" download>Download square</a>
+              </div>
+            </article>
+            <article className="social-card social-card-story" data-reveal>
+              <div className="social-preview social-preview-story">
+                <Image src="/social/tom-runs-instagram-story-phab.png" alt="Vertical Tom Runs Instagram Story campaign post" width={1080} height={1920} unoptimized />
+              </div>
+              <div className="social-card-copy">
+                <div><p className="eyebrow">Instagram Story</p><h3>Vertical graphic</h3><span>1080 × 1920 PNG</span></div>
+                <a className="button" href="/social/tom-runs-instagram-story-phab.png" download>Download Story</a>
+              </div>
+            </article>
           </div>
         </section>
 

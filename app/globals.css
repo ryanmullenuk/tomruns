@@ -287,6 +287,10 @@ a { color: inherit; }
 .goal-copy h2 { font-family: "Bungee", Impact, sans-serif; font-size: clamp(3.4rem,7vw,7.5rem); letter-spacing: -.055em; line-height: .85; margin: 2rem 0; text-transform: uppercase; }
 .goal-copy h2 span { color: var(--clay); }
 .goal-copy > p:last-child { font-size: 1.25rem; line-height: 1.5; max-width: 31rem; }
+.fundraising-update-tile { background: var(--pink); border: 3px solid var(--deep); box-shadow: 8px 8px 0 var(--deep); display: grid; margin: 2rem 0 3rem; max-width: 21rem; padding: 1.15rem 1.35rem; transform: rotate(-1.5deg); width: max-content; }
+.fundraising-update-tile span { font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.fundraising-update-tile strong { color: var(--deep); font-family: "Bungee", Impact, sans-serif; font-size: clamp(2.8rem,5vw,5rem); letter-spacing: -.055em; line-height: .95; margin-top: .45rem; }
+.fundraising-update-tile p { font-family: "Bungee", Impact, sans-serif; font-size: clamp(1rem,1.6vw,1.35rem); margin: .25rem 0 0; text-transform: uppercase; }
 .fundraising { align-self: center; background: var(--white); border: 3px solid var(--deep); box-shadow: 10px 10px 0 var(--clay); padding: clamp(1.3rem,4vw,3rem); }
 .retro-screen { background: var(--deep); border: 3px solid var(--forest); box-shadow: inset 0 0 0 3px rgba(91,197,238,.22); color: var(--gold); font-family: "Bungee", Impact, sans-serif; padding: clamp(1rem,3vw,2rem); }
 .retro-screen-top { display: flex; font-size: clamp(.68rem,1.2vw,.9rem); gap: 1rem; justify-content: space-between; letter-spacing: .05em; text-transform: uppercase; }
@@ -326,6 +330,23 @@ a { color: inherit; }
 .journey-log h3 { font-family: "Bungee", Impact, sans-serif; font-size: clamp(1.8rem,3.4vw,3.6rem); letter-spacing: -.035em; margin: .8rem 0 1.2rem; text-transform: uppercase; }
 .journey-log article:nth-child(2) h3 { color: var(--clay); }
 .journey-log p:last-child { font-size: 1.05rem; line-height: 1.6; max-width: 37rem; }
+
+.social-kit { background: var(--sky); border-top: 3px solid var(--deep); display: grid; gap: clamp(3rem,7vw,7rem); grid-template-columns: .72fr 1.28fr; overflow: hidden; position: relative; }
+.social-kit::after { background: var(--gold); border: 3px solid var(--deep); border-radius: 50%; content: ""; height: 10rem; left: -4rem; position: absolute; top: 3rem; width: 10rem; }
+.social-kit > * { position: relative; z-index: 2; }
+.social-kit-heading h2 { font-family: "Bungee", Impact, sans-serif; font-size: clamp(3rem,6vw,6.5rem); letter-spacing: -.05em; line-height: .87; margin: 1.5rem 0 2rem; text-transform: uppercase; }
+.social-kit-heading h2 span { color: var(--clay); }
+.social-kit-heading > p:last-child { font-size: clamp(1rem,1.35vw,1.2rem); line-height: 1.65; max-width: 34rem; }
+.social-assets { align-items: start; display: grid; gap: clamp(1.2rem,2.4vw,2rem); grid-template-columns: 1fr .78fr; }
+.social-card { background: var(--white); border: 3px solid var(--deep); box-shadow: 9px 9px 0 var(--deep); min-width: 0; overflow: hidden; }
+.social-preview { background: var(--deep); border-bottom: 3px solid var(--deep); overflow: hidden; }
+.social-preview img { display: block; height: auto; object-fit: cover; width: 100%; }
+.social-preview-square { aspect-ratio: 1; }
+.social-preview-story { aspect-ratio: 9 / 16; }
+.social-card-copy { display: grid; gap: 1.2rem; padding: clamp(1rem,2vw,1.5rem); }
+.social-card-copy h3 { font-family: "Bungee", Impact, sans-serif; font-size: clamp(1.3rem,2.2vw,2rem); margin: .35rem 0; text-transform: uppercase; }
+.social-card-copy span { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.social-card-copy .button { width: 100%; }
 
 .donate {
   background: var(--pink);
@@ -368,8 +389,9 @@ footer p:last-child { justify-self: end; text-align: right; }
   .origin-image { border-radius: 0 0 46% 0; margin: 0; min-height: 520px; }
   .impact-list { grid-template-columns: 1fr; }
   .impact-list article { min-height: 0; }
-  .goal, .journey { grid-template-columns: 1fr; }
+  .goal, .journey, .social-kit { grid-template-columns: 1fr; }
   .journey-heading { position: static; }
+  .social-assets { grid-template-columns: minmax(0,1fr) minmax(0,.68fr); }
   footer { grid-template-columns: 1fr; text-align: left; }
   footer p:last-child { justify-self: start; text-align: left; }
 }
@@ -407,6 +429,9 @@ footer p:last-child { justify-self: end; text-align: right; }
   .donation-ticker { grid-template-columns: 1fr; }
   .ticker-label { border-bottom: 3px solid var(--deep); border-right: 0; justify-content: center; padding-bottom: .8rem; padding-top: .8rem; }
   .ticker-donation { font-size: .78rem; min-height: 58px; padding-left: .9rem; padding-right: .9rem; }
+  .social-assets { grid-template-columns: 1fr; }
+  .social-card-story { margin: 0 auto; max-width: 22rem; width: 100%; }
+  .fundraising-update-tile { max-width: calc(100% - .6rem); width: max-content; }
 }
 
 @media (max-width: 560px) {
