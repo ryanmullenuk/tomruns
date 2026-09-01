@@ -60,7 +60,7 @@ export default function Home() {
     let animationFrame = 0;
     let particles: Particle[] = [];
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const palette = ["rgba(243,234,213,.34)", "rgba(220,185,110,.42)", "rgba(163,169,120,.34)"];
+    const palette = ["rgba(245,217,76,.48)", "rgba(235,157,219,.44)", "rgba(84,194,128,.42)", "rgba(232,79,84,.38)"];
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
@@ -146,6 +146,7 @@ export default function Home() {
             <img src="/images/tom-forest-banner.png" alt="" fetchPriority="high" />
           </div>
           <div className="hero-shade" aria-hidden="true" />
+          <div className="hero-shapes" aria-hidden="true"><i /><i /><i /><i /></div>
           <canvas ref={particleCanvasRef} className="particle-field" aria-hidden="true" />
           <div className="hero-copy">
             <p className="eyebrow hero-kicker">London Marathon · 2027</p>
@@ -166,6 +167,7 @@ export default function Home() {
         </div>
 
         <section className="why section-pad" id="why">
+          <div className="section-shapes why-shapes" aria-hidden="true"><i /><i /><i /></div>
           <div className="why-heading" data-reveal>
             <p className="eyebrow">A cause close to home</p>
             <h2>Inclusion isn&apos;t an extra.<br /><span>It&apos;s everything.</span></h2>
@@ -207,6 +209,7 @@ export default function Home() {
         </section>
 
         <section className="goal section-pad" id="goal" aria-labelledby="goal-title">
+          <div className="section-shapes goal-shapes" aria-hidden="true"><i /><i /><i /></div>
           <div className="goal-copy" data-reveal>
             <p className="eyebrow">The fundraising target</p>
             <h2 id="goal-title">£2,500.<br /><span>Let&apos;s get there.</span></h2>
@@ -238,6 +241,7 @@ export default function Home() {
         </section>
 
         <section className="donate" id="donate" aria-labelledby="donate-title">
+          <div className="donate-shapes" aria-hidden="true"><i /><i /><i /><i /></div>
           <p className="eyebrow" data-reveal>Back Tom · Back Phab</p>
           <h2 id="donate-title" data-reveal>Help turn<br />26.2 miles<br /><span>into opportunity.</span></h2>
           <p data-reveal>Every mile I run will help create more opportunities for disabled and non-disabled people to connect, thrive and enjoy life together.</p>
