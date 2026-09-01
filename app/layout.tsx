@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tomruns.co.uk"),
   title: "Tom Runs for Phab | London Marathon 2027",
   description: "Follow Tom's London Marathon 2027 journey and help him raise £2,500 for Phab.",
+  other: { "codex-preview": "development" },
   openGraph: {
     title: "Tom Runs for Phab",
     description: "26.2 miles. A £2,500 target. One brilliant cause.",
