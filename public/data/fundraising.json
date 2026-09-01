@@ -1,0 +1,14 @@
+{
+  "target": 2500,
+  "total": 200,
+  "currency": "GBP",
+  "updatedAt": "2026-09-01T12:50:00.000Z",
+  "donations": [
+    {
+      "name": "Mum and dad",
+      "amount": 200,
+      "message": "Sounds proud of you Tommy ! Xxx",
+      "dateLabel": "2 days ago"
+    }
+  ]
+}
