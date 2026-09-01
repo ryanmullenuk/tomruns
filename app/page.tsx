@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -14,10 +15,73 @@ type Particle = {
   colour: string;
 };
 
+type Donation = {
+  name: string;
+  amount: number;
+  message: string;
+  dateLabel: string;
+};
+
+type FundraisingData = {
+  target: number;
+  total: number;
+  currency: "GBP";
+  updatedAt: string;
+  donations: Donation[];
+};
+
+const initialFundraising: FundraisingData = {
+  target: 2500,
+  total: 200,
+  currency: "GBP",
+  updatedAt: "2026-09-01T12:50:00.000Z",
+  donations: [{
+    name: "Mum and dad",
+    amount: 200,
+    message: "Sounds proud of you Tommy ! Xxx",
+    dateLabel: "2 days ago",
+  }],
+};
+
+const formatCurrency = (value: number) => new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+  minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+  maximumFractionDigits: 2,
+}).format(value);
+
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [fundraising, setFundraising] = useState<FundraisingData>(initialFundraising);
   const particleCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const cacheWindow = Math.floor(Date.now() / 300000);
+    const dataUrl = `https://raw.githubusercontent.com/ryanmullenuk/tomruns/main/public/data/fundraising.json?v=${cacheWindow}`;
+
+    fetch(dataUrl, { cache: "no-store", signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("Fundraising data is unavailable");
+        return response.json() as Promise<FundraisingData>;
+      })
+      .then((data) => {
+        if (
+          Number.isFinite(data.total) &&
+          Number.isFinite(data.target) &&
+          data.target > 0 &&
+          Array.isArray(data.donations)
+        ) setFundraising(data);
+      })
+      .catch((error: unknown) => {
+        if (!(error instanceof DOMException && error.name === "AbortError")) {
+          console.info("Using the latest built-in fundraising total.");
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     let value = 0;
@@ -110,6 +174,32 @@ export default function Home() {
       window.cancelAnimationFrame(animationFrame);
     };
   }, []);
+
+  const fundedPercentage = Math.min(100, Math.max(0, (fundraising.total / fundraising.target) * 100));
+  const squareValue = fundraising.target / 16;
+  const updatedLabel = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/London",
+  }).format(new Date(fundraising.updatedAt));
+
+  const donationItems = fundraising.donations.length > 0
+    ? fundraising.donations
+    : [{ name: "Be the first", amount: 0, message: "Help Tom get the campaign moving", dateLabel: "Donate today" }];
+
+  const renderDonationGroup = (duplicate = false) => (
+    <div className="ticker-group" aria-hidden={duplicate || undefined}>
+      {donationItems.map((donation, index) => (
+        <article className="ticker-donation" key={`${duplicate ? "copy" : "donation"}-${donation.name}-${index}`}>
+          <span className="ticker-name">{donation.name}</span>
+          {donation.amount > 0 && <strong>{formatCurrency(donation.amount)}</strong>}
+          {donation.message && <span className="ticker-message">“{donation.message}”</span>}
+          <time>{donation.dateLabel}</time>
+          <i aria-hidden="true" />
+        </article>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -217,14 +307,36 @@ export default function Home() {
           </div>
           <div className="fundraising" data-reveal>
             <div className="retro-screen">
-              <div className="retro-screen-top"><span>Fundraising mission</span><strong>Target £2,500</strong></div>
-              <div className="retro-progress" role="progressbar" aria-label="Fundraising progress; live total available on JustGiving">
-                {Array.from({ length: 16 }, (_, index) => <i key={index} />)}
+              <div className="retro-screen-top"><span>Fundraising mission</span><strong>{formatCurrency(fundraising.total)} raised</strong></div>
+              <div className="raised-total"><span>{formatCurrency(fundraising.total)}</span><small>of {formatCurrency(fundraising.target)}</small></div>
+              <div
+                className="retro-progress"
+                role="progressbar"
+                aria-label="Fundraising progress"
+                aria-valuemin={0}
+                aria-valuemax={fundraising.target}
+                aria-valuenow={fundraising.total}
+                aria-valuetext={`${formatCurrency(fundraising.total)} raised of a ${formatCurrency(fundraising.target)} target`}
+              >
+                {Array.from({ length: 16 }, (_, index) => {
+                  const fill = Math.min(100, Math.max(0, ((fundraising.total - (index * squareValue)) / squareValue) * 100));
+                  return <i key={index} style={{ "--fill": `${fill}%` } as CSSProperties} />;
+                })}
               </div>
-              <div className="retro-scale"><span>START</span><span>LIVE TOTAL ON JUSTGIVING</span><span>£2,500</span></div>
+              <div className="retro-scale"><span>START</span><span>{Math.round(fundedPercentage)}% FUNDED</span><span>{formatCurrency(fundraising.target)}</span></div>
             </div>
-            <p>Check the live total and make a secure donation directly to Phab through my official fundraising page.</p>
+            <p>Updated from JustGiving on {updatedLabel}. Make a secure donation directly to Phab through my official fundraising page.</p>
             <a className="button" href={donateHref} target="_blank" rel="noreferrer">Open JustGiving</a>
+          </div>
+        </section>
+
+        <section className="donation-ticker" aria-labelledby="supporters-title">
+          <div className="ticker-label" id="supporters-title">Latest support</div>
+          <div className="ticker-window">
+            <div className="ticker-track">
+              {renderDonationGroup()}
+              {renderDonationGroup(true)}
+            </div>
           </div>
         </section>
 
