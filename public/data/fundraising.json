@@ -2,19 +2,19 @@
   "target": 2500,
   "total": 690,
   "currency": "GBP",
-  "updatedAt": "2026-11-19T10:05:19.636Z",
+  "updatedAt": "2026-11-20T10:00:01.534Z",
   "donations": [
     {
       "name": "Anonymous",
       "amount": 10,
       "message": "",
-      "dateLabel": "3 hours ago"
+      "dateLabel": "1 day ago"
     },
     {
       "name": "Andrew and Deb",
       "amount": 50,
       "message": "Well done tom you will smash it.",
-      "dateLabel": "16 hours ago"
+      "dateLabel": "1 day ago"
     },
     {
       "name": "The Edwardses",
